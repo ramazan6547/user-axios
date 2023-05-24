@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+.userdiv {
+  border: 3px solid green;
+  border-radius: 10px;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.mainUserDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

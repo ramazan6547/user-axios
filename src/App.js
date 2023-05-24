@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import UserCard from "./component/UserCard";
 function App() {
+  const [users, setUsers] = useState([])
+  const getApiData = async () => {
+    const response = await axios({
+      url: "https://jsonplaceholder.typicode.com/users",
+      method: "GET",
+    });
+    setUsers(response.data)
+  }
+  useEffect(() => {
+    getApiData()
+  }, [])
+  useEffect(() => {
+    console.log("Users : ", users)
+  }, [users])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>USERS</h1>
+      <div className='mainUserDiv'>
+        {users.map(user => {
+          return <UserCard key={user.id} username={user.username} id={user.id} name={user.name} email={user.email}/>
+        })}
+      </div>
     </div>
   );
 }
-
 export default App;
